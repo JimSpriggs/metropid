@@ -1,5 +1,8 @@
 class MetropidService:
 
+    gateway = None
+    parser = None
+    logger = None
     metrolink_data = {}
     prev_metrolink_data = {}
 
@@ -14,8 +17,8 @@ class MetropidService:
         return self.updated
 
     def check_for_update(self):
-        # response = self.gateway.get_metrolinks()
-        response = None
+        response = self.gateway.get_metrolinks()
+        # response = None
 
         self.metrolink_data = self.parser.parse(response)
         if self.metrolink_data != self.prev_metrolink_data:

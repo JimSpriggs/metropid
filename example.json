@@ -1,0 +1,32 @@
+{
+  "@odata.context": "https://opendataclientapi.azurewebsites.net/odata/$metadata#Metrolinks",
+  "value": [
+    {
+      "Id": 307,
+      "Line": "Bury",
+      "TLAREF": "PRS",
+      "PIDREF": "PRS-TPTD01",
+      "StationLocation": "Prestwich",
+      "AtcoCode": "9400ZZMAPWC2",
+      "Direction": "Incoming",
+      "Dest0": "Piccadilly",
+      "Carriages0": "Double",
+      "Status0": "Due",
+      "Wait0": "7",
+      "Dest1": "Piccadilly",
+      "Carriages1": "Double",
+      "Status1": "Due",
+      "Wait1": "18",
+      "Dest2": "Piccadilly",
+      "Carriages2": "Double",
+      "Status2": "Due",
+      "Wait2": "30",
+      "Dest3": "",
+      "Carriages3": "",
+      "Status3": "",
+      "MessageBoard": "Unlimited travel before 7:30am between 1:00pm and 3:30pm and after 7:00pm on any week day just 3 pound with the Early Bird Plus. Buy on the get me there app by 7:00am. Visit tfgm/earlybird for info",
+      "Wait3": "",
+      "LastUpdated": "2018-11-18T19:57:20Z"
+    }
+  ]
+}

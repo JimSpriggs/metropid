@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import time
 import schedule
 import logging
 from parser.tfgm_response_parser import TfgmResponseParser
@@ -10,10 +9,11 @@ from device.scrollphathd_display import ScrollPHatHDDisplay
 
 logging.basicConfig(level = logging.DEBUG)
 logger = logging.getLogger('metrolink')
-tfgm_gateway = TfgmGateway
+tfgm_gateway = TfgmGateway()
 tfgm_response_parser = TfgmResponseParser()
 metropid_service = MetropidService(tfgm_gateway, tfgm_response_parser, logger)
 display = ScrollPHatHDDisplay(logger)
+#display = Display(logger)
 updated = False
 
 def check_for_updates():
@@ -35,3 +35,4 @@ def run_scheduled():
         display.update_display()
 
 run_scheduled()
+#check_for_updates()
