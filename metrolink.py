@@ -1,33 +1,37 @@
 #!/usr/bin/env python
-
-import signal
 import time
+import schedule
+import logging
+from parser.tfgm_response_parser import TfgmResponseParser
+from gateway.tfgm_gateway import TfgmGateway
+from service.metropid_service import MetropidService
+from device.display import Display
+from device.scrollphathd_display import ScrollPHatHDDisplay
 
-import scrollphathd
+logging.basicConfig(level = logging.DEBUG)
+logger = logging.getLogger('metrolink')
+tfgm_gateway = TfgmGateway
+tfgm_response_parser = TfgmResponseParser()
+metropid_service = MetropidService(tfgm_gateway, tfgm_response_parser, logger)
+display = ScrollPHatHDDisplay(logger)
+updated = False
 
-print("""
-Scroll pHAT HD: Hello World
+def check_for_updates():
+    metropid_service.check_for_update()
+    apply_updates()
 
-Scrolls "Hello World" across the screen
-using the default 5x7 pixel large font.
+def apply_updates():
+    if metropid_service.is_updated():
+        metrolink_data = metropid_service.get_update()
+        display.set_message(metrolink_data['message'])
 
-Press Ctrl+C to exit!
+def run_scheduled():
 
-""")
+    apply_updates()
+    schedule.every(10).seconds.do(check_for_updates)
 
-# Uncomment the below if your display is upside down
-#   (e.g. if you're using it in a Pimoroni Scroll Bot)
-#scrollphathd.rotate(degrees=180)
+    while True:
+        schedule.run_pending()
+        display.update_display()
 
-# Write the "Hello World!" string in the buffer and
-#   set a more eye-friendly default brightness
-scrollphathd.write_string("Hello Gorgeous Bex!   ", brightness=0.5)
-
-# Auto scroll using a while + time mechanism (no thread)
-while True:
-    # Show the buffer
-    scrollphathd.show()
-    # Scroll the buffer content
-    scrollphathd.scroll()
-    # Wait for 0.1s
-#    time.sleep(0.02)
+run_scheduled()
