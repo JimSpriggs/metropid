@@ -4,7 +4,7 @@ class MetropidService:
     prev_metrolink_data = {}
 
     def __init__(self, gateway, parser, logger):
-        self.metrolink_data['message'] = 'Loading...'
+        self.metrolink_data['message'] = 'Loading...     '
         self.updated = True
         self.gateway = gateway
         self.parser = parser

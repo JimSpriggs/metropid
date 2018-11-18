@@ -9,6 +9,7 @@ class ScrollPHatHDDisplay(Display):
         super().__init__(logger)
 
     def set_message(self, message):
+        scrollphathd.clear()
         scrollphathd.write_string(message, brightness=0.5)
 
     def update_display(self):
