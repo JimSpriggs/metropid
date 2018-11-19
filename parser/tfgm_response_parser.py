@@ -35,11 +35,11 @@ class TfgmResponseParser:
 
     def decode_trip(self, value, index):
         msg = ''
-        if value[f'Dest{index}'] is not None and value[f'Dest{index}'] != '':
-            time = int(value[f'Wait{index}'])
+        if value['Dest{}'.format(index)] is not None and value['Dest{}'.format(index)] != '':
+            time = int(value['Wait{}'.format(index)])
             if time >= 7:
                 carriages = ' sgl '
-                if value[f'Carriages{index}'] == 'Double':
+                if value['Carriages{}'.format(index)] == 'Double':
                     carriages = ' dbl '
-                msg += value[f'Dest{index}'] + carriages + f'{time}    '
+                msg += value['Dest{}'.format(index)] + carriages + '{}    '.format(time)
         return msg
