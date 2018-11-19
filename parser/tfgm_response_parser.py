@@ -38,8 +38,8 @@ class TfgmResponseParser:
         if value['Dest{}'.format(index)] is not None and value['Dest{}'.format(index)] != '':
             time = int(value['Wait{}'.format(index)])
             if time >= 7:
-                carriages = ' sgl '
+                carriages = ''
                 if value['Carriages{}'.format(index)] == 'Double':
-                    carriages = ' dbl '
-                msg += value['Dest{}'.format(index)] + carriages + '{}    '.format(time)
+                    carriages = ' dbl'
+                msg += value['Dest{}'.format(index)] + carriages + ' {}    '.format(time)
         return msg
