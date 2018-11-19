@@ -17,8 +17,7 @@ class TfgmGateway:
                      headers=headers)
 
         res = conn.getresponse()
-        data = res.read()
+        data = res.read().decode("utf-8")
 
-        print(data.decode("utf-8"))
-
+        print(data)
         return data
