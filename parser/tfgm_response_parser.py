@@ -1,5 +1,10 @@
 import json
 
+DESTS = {
+    'Piccadilly': 'Picc',
+    'Altrincham': 'Alt'
+}
+
 class TfgmResponseParser:
 
     example = '''{
@@ -41,5 +46,11 @@ class TfgmResponseParser:
                 carriages = ''
                 if value['Carriages{}'.format(index)] == 'Double':
                     carriages = ' dbl'
-                msg += value['Dest{}'.format(index)] + carriages + ' {}    '.format(time)
+                msg += self.convert_dest(value['Dest{}'.format(index)]) + carriages + ' {}    '.format(time)
         return msg
+
+    def convert_dest(self, dest):
+        if dest in DESTS:
+            return DESTS[dest]
+        else:
+            return dest

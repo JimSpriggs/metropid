@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import schedule
 import logging
 from parser.tfgm_response_parser import TfgmResponseParser
